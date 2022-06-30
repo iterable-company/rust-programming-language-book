@@ -1,5 +1,5 @@
 fn main() {
-    let v = vec![1,2,3];// default は i32
+    let v = vec![1, 2, 3]; // default は i32
     println!("{:#?}", v);
 
     //println!("{}", v[4]); panic
@@ -26,7 +26,7 @@ fn main() {
     ];
 
     for e in v4 {
-        println!("{:#?}",e);
+        println!("{:#?}", e);
     }
 }
 

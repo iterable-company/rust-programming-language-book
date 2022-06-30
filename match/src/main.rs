@@ -29,7 +29,7 @@ fn value_in_cents(coin: Coin) -> u32 {
         Coin::Quarter(state) => {
             println!("state is {:#?}", state);
             25
-        },
+        }
     }
 }
 

@@ -47,6 +47,6 @@ fn success2() {
 //     println!("{}", s);
 // }
 
-fn change(str:  & mut String) {
+fn change(str: &mut String) {
     str.push_str(", kyoto");
 }

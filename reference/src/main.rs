@@ -1,6 +1,6 @@
 fn main() {
     let mut s1 = String::from("hello");
-    
+
     let len = calculate_length(&s1);
     println!("{}, {}", s1, len);
 

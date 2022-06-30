@@ -1,8 +1,0 @@
-{
-    "rust-analyzer.assist.importEnforceGranularity": true,
-    "rust-analyzer.cargoRunner": null,
-    "rust-analyzer.server.path": null,
-    "rust-analyzer.trace.extension": true,
-    "rust-analyzer.trace.server": "verbose",
-    "json.trace.server": "verbose",
-}

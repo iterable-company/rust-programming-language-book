@@ -7,4 +7,3 @@ fn main() {
     let s4 = s3.clone();
     println!("{}, {}", s3, s4);
 }
-
