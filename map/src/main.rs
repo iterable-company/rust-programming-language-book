@@ -64,7 +64,7 @@ fn main() {
     let mut people_in_specific_department: HashMap<String, Vec<String>> = HashMap::new();
     let re = Regex::new(r"Add ([a-zA-Z]+) to ([a-zA-Z]+)").unwrap();
     loop {
-        println!("Please input person with belonged department or \"q\" if you complete inputing.");
+        println!("Please input name of person with belonged department or \"q\" if you want to finish inputing.\r\nInputing format is \"Add <person name> to <department name>\"");
 
         let mut input = String::new();
         io::stdin()
@@ -75,7 +75,7 @@ fn main() {
             "q" => {
                 println!("q is inputed.");
                 break},
-            s => {println!("s: {}", s)},
+            _ => (),
         }
 
         let caps = re.captures(&input).unwrap();
@@ -85,7 +85,6 @@ fn main() {
         println!("You inputed that person is {} and department is {}", &person_name, &department_name);
         let people = people_in_specific_department.entry(department_name.clone()).or_insert(vec![] as Vec<String>);
         let len = people.len();
-        println!("people: {:?}", people);
         for (idx, name) in people.clone().iter().enumerate() {
             match name.cmp(&person_name) {
                 Ordering::Less => {people.insert(idx, person_name.clone()); break;},
@@ -100,28 +99,30 @@ fn main() {
 
 fn stats(numbers: Vec<i32>) -> (f64, f64, i32) {
     let mean = (numbers.iter().sum::<i32>() as f64)/(numbers.len() as f64);
-    let sorted_numbers: Vec<i32> = numbers.clone().into_iter().sorted().collect();
-    let indice = [(((&sorted_numbers.len() - 1) as f64)/2.0 ).ceil() as usize, (((&sorted_numbers.len() - 1) as f64)/2.0 ).floor() as usize];
-    println!("indice: {:#?}", indice);
-    let sum_of_two_median_values:i32 = indice.map(|idx| sorted_numbers.clone().into_iter().nth(idx).unwrap()).iter().sum();
-    println!("sum_of_two_median_values: {:#?}", sum_of_two_median_values);
-    let median = (sum_of_two_median_values as f64)/2.0;
-    let mut freq: HashMap<i32, i32> = HashMap::new();
-    for n in numbers.clone() {
-        let count = freq.entry(n).or_insert(0);
-        *count += 1;
-    }
-    let most_appeared = freq.into_iter().sorted_by(|l, r| Ord::cmp(&l.1, &r.1)).last().map(|(k, _)| k).unwrap();
+
+    let median = {
+        let sorted_numbers: Vec<i32> = numbers.clone().into_iter().sorted().collect();
+        let indice = [(((&sorted_numbers.len() - 1) as f64)/2.0 ).ceil() as usize, (((&sorted_numbers.len() - 1) as f64)/2.0 ).floor() as usize];
+        let sum_of_two_median_values:i32 = indice.map(|idx| sorted_numbers.clone().into_iter().nth(idx).unwrap()).iter().sum();
+        (sum_of_two_median_values as f64)/2.0
+    };
+    
+    let most_appeared = {
+        let mut freq: HashMap<i32, i32> = HashMap::new();
+        for n in numbers.clone() {
+            let count = freq.entry(n).or_insert(0);
+            *count += 1;
+        }
+        freq.into_iter().sorted_by(|l, r| Ord::cmp(&l.1, &r.1)).last().map(|(k, _)| k).unwrap()
+    };
     (mean, median, most_appeared)
 }
 
 fn pig_latin(word: &str) -> String {
-    let vowel = vec!["a","i","u","e","o"];
-    let head = word.chars().nth(0).unwrap();
-    match vowel.contains(&head.to_string().as_str()) {
+    let mut vowel = "aiueo".chars();
+    let head = word.chars().nth(0).expect("empty string is passed to pig_latin as &str");
+    match vowel.contains(&head) {
         true => format!("{}-hay", word),
-        false => format!("{}-{}ay", &word.to_string()[1..], head),
+        false => format!("{}-{}ay", &word.to_string()[1..], head),// &strはポイントなので、trait Sized を実装していないためSliceにできないので、to_string()する
     }
-
-    
 }
