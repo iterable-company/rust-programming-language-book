@@ -82,3 +82,10 @@ fn implicit_deref_coercion() {
     let m = MyBox1::new(String::from("hoge"));
     hello(&m) // &m => &(MyBox1::deref()) -> &String -> &(String::deref()) -> &str 強制的に変換してくれる。しかも &&にならない
 }
+
+/*  以下は infinite size のためコンパイルエラーになる。　MyBoxはただの構造体でしかない。
+enum List {
+    Cons(i32, MyBox1<List>),
+    Nil,
+}
+*/
