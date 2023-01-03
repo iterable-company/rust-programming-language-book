@@ -23,7 +23,7 @@ fn rc() {
     let counter = Rc::new(Mutex::new(0));
     let mut handles: Vec<thread::JoinHandle<()>> = vec![];
 
-    /* コンパイルエラーになる Rcはスレッドセーフではないため、スレッド間で共有 きょうゆうできない
+    /* コンパイルエラーになる Rcはスレッドセーフではないため、スレッド間で共有できない
     for _ in 0..10 {
         let counter = Rc::clone(&counter);
         let handle = thread::spawn(move || {
