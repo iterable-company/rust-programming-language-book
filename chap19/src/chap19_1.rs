@@ -1,4 +1,4 @@
-pub fn chap19_1() {
+pub fn run() {
     raw_pointer_from_reference();
     raw_address();
     unsafe_function();
