@@ -34,6 +34,7 @@ fn move_closure() {
     call_fn_once(|| {
         println!("{:?}", v1.into_iter().map(|i| i + 1).collect::<Vec<i32>>());
     });
+
     // v2をmoveしているのでコンパイルエラー
     // call_fn_mut(|| {
     //     println!("{:?}", v2.into_iter().map(|i| i + 1).collect::<Vec<i32>>());
@@ -43,6 +44,9 @@ fn move_closure() {
     // call_fn(|| {
     //     println!("{:?}", v3.into_iter().map(|i| i + 1).collect::<Vec<i32>>());
     // });
+
+    // call_fn_onceでmoveしているのでv1は参照できない
+    // println!("{:?}", v1);
 }
 
 fn not_move_and_mutate() {
