@@ -1,7 +1,8 @@
-use std::fmt::Display;
+pub mod new_type;
+pub mod type_alias;
 
-use crate::chap19_3_new_type::{Base, People, Wrapper};
-use crate::chap19_3_type_alias::{MyStruct, MyTrait};
+use crate::chap19_3::new_type::{Base, People, Wrapper};
+use crate::chap19_3::type_alias::{MyStruct, MyTrait};
 
 pub fn run() {
     new_type_pattern();
