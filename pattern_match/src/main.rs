@@ -218,23 +218,23 @@ fn multi_guard() {
     }
 }
 
-enum Message {
+enum Message2 {
     Hello { id: i32 },
 }
 fn at_mark_biding() {
-    let msg = Message::Hello { id: 5 };
+    let msg = Message2::Hello { id: 5 };
 
     match msg {
-        Message::Hello {
+        Message2::Hello {
             id: id_variable @ 3..=7, // 値を束縛したいので@を使う
         } => {
             println!("Found an id in range: {}", id_variable)
         }
-        Message::Hello { id: 10..=12 } => {
+        Message2::Hello { id: 10..=12 } => {
             // 範囲指定したいだけで値は不要なので@は使わない
             println!("Found an id in another range")
         }
-        Message::Hello { id } => {
+        Message2::Hello { id } => {
             println!("Found some other id: {}", id)
         }
     }
