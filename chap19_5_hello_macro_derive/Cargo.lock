@@ -7,8 +7,6 @@ name = "chap19"
 version = "0.1.0"
 dependencies = [
  "derive-new",
- "hello_macro",
- "hello_macro_derive",
 ]
 
 [[package]]
@@ -18,18 +16,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3418329ca0ad70234b9735dc4ceed10af4df60eff9c8e7b06cb5e520d92c3535"
 dependencies = [
  "proc-macro2",
- "quote",
- "syn",
-]
-
-[[package]]
-name = "hello_macro"
-version = "0.1.0"
-
-[[package]]
-name = "hello_macro_derive"
-version = "0.1.0"
-dependencies = [
  "quote",
  "syn",
 ]
