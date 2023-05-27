@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "loops"
+name = "chap6"
 version = "0.1.0"
