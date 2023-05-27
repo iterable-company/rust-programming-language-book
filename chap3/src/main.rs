@@ -106,7 +106,7 @@ fn for_loop() {
         println!("the value is: {}", a[number]);
     }
 
-    for i in (10..=20) {
+    for i in 10..=20 {
         println!("the value is {}", i);
     }
 

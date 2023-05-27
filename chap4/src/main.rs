@@ -41,7 +41,7 @@ fn ownership() {
     let s2 = takes_and_gives_back(s1);
     println!("{}", s2);
 
-    let (s3, len) = calculate_length(s2);
+    let (s3, len) = calculate_length1(s2);
     println!("{}, {}", s3, len);
 }
 
@@ -62,7 +62,7 @@ fn takes_and_gives_back(a_string: String) -> String {
     a_string
 }
 
-fn calculate_length(s: String) -> (String, usize) {
+fn calculate_length1(s: String) -> (String, usize) {
     let length = s.len();
 
     (s, length)
@@ -71,8 +71,8 @@ fn calculate_length(s: String) -> (String, usize) {
 fn reference() {
     let mut s1 = String::from("hello");
 
-    let len = calculate_length(&s1);
-    println!("{}, {}", s1, len);
+    let len = calculate_length2(&s1);
+    println!("{}, {:?}", s1, len);
 
     change(&mut s1);
     change(&mut s1);
@@ -80,7 +80,7 @@ fn reference() {
     println!("{}", s1);
 }
 
-fn calculate_length(some_string: &String) -> usize {
+fn calculate_length2(some_string: &String) -> usize {
     some_string.len()
 }
 
