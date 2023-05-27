@@ -1,8 +1,82 @@
+fn main() {
+    vec();
+    str();
+    map();
+}
+
+fn vec() {
+    let v = vec![1, 2, 3]; // default は i32
+    println!("{:#?}", v);
+
+    //println!("{}", v[4]); panic
+    println!("{:#?}", v.get(4)); // return Option<i32>
+
+    for i in v {
+        println!("{}", i);
+    }
+
+    let mut v2 = Vec::new();
+    v2.push(5);
+    println!("{:#?}", v2);
+
+    let mut v3 = vec![10, 9, 8, 7, 6];
+    for i in &mut v3 {
+        *i += 50;
+    }
+    println!("{:#?}", v3);
+
+    let v4 = vec![
+        SpreadSheetCell::Int(8),
+        SpreadSheetCell::Float(4.4),
+        SpreadSheetCell::Text("hoge".to_string()),
+    ];
+
+    for e in v4 {
+        println!("{:#?}", e);
+    }
+}
+
+#[derive(Debug)]
+enum SpreadSheetCell {
+    Int(i32),
+    Float(f64),
+    Text(String),
+}
+
+fn str() {
+    let s1 = String::from("Hello, ");
+    let s2 = String::from("world!;");
+    let s3 = s1.clone() + &s2;
+    let s4 = format!("{}{}", s1, s2);
+    println!("{}", s1);
+    println!("{}", s3);
+    println!("{}", s4);
+
+    //println!("{}", &s1[0]); Stringは添字アクセスを実装していない
+
+    let kyoto_prefecture = String::from("京都府");
+    for ch in kyoto_prefecture.chars() {
+        println!("{}", ch);
+    }
+    let hokke = String::from("𩸽の塩焼き");
+    for ch in hokke.chars() {
+        println!("{}", ch);
+    }
+
+    for ch in "नमस्ते".chars() {
+        println!("{}", ch);
+    }
+
+    for ch in "🙇𠀋".chars() {
+        println!("{}", ch);
+    }
+}
+
 use itertools::Itertools;
 use regex::Regex;
 use std::{cmp::Ordering, collections::HashMap, io};
 
-fn main() {
+fn map() {
     let teams = vec![String::from("Bule"), String::from("Yellow")];
     let initial_scores = vec![10, 50];
 
